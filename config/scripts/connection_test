@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+import socket
+import time
+import argparse
+
+
+def connect(s, target, port):
+    s.connect((target, port))
+    s.close()
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-w", "--wait", help="wait for response.", action="store_true")
+    parser.add_argument("-t", "--target", help="target host.", required=True)
+    parser.add_argument("-p", "--port", help="target port.", required=True)
+    args = parser.parse_args()
+
+    port = int(args.port)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    if args.wait:
+        while True:
+            try:
+                connect(s, args.target, port)
+                break
+            except socket.error:
+                print(f"{args.target} connection faild.")
+                time.sleep(1)
+        print(f"{args.target} connection ready.")
+    else:
+        try:
+            connect(s, args.target, port)
+            print(f"{args.target} responded on given {port} port.")
+        except socket.error:
+            print(f"{args.target} didn't responded on given {port} port.")
+            exit(1)
+
+
+main()
