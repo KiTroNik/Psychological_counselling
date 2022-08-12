@@ -13,7 +13,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
-  web:
+  backend:
     build:
       context: .
       dockerfile: config/backend.Dockerfile
@@ -35,7 +35,7 @@ services:
       args:
         FE_CMD: ${FE_CMD}
     depends_on:
-      - web
+      - backend
     volumes:
       - ./frontend/src/:/frontend/src
       - ./frontend/public/:/frontend/public
