@@ -19,4 +19,5 @@ jobs:
           poetry install
       - name: Formatters
         run: |
+          cd backend
           poetry run black . --check
