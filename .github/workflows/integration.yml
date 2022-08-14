@@ -18,6 +18,6 @@ jobs:
           poetry install
       - name: Formatters
         run: |
-          black . --check
+          poetry run black . --check
 
 
