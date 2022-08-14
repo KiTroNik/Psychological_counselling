@@ -21,3 +21,14 @@ jobs:
         run: |
           cd backend
           poetry run black . --check
+          poetry run isort . -c
+      - name: Linters
+        run: |
+          cd backend
+          poetry run mypy .
+          poetry run flake8 .
+          poetry run pylint app/
+      - name: Tests
+        run: |
+          cd backend
+          poetry run pytest .
