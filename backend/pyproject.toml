@@ -8,6 +8,9 @@ authors = ["Jakub Tomala <jakub.tomala@stxnext.pl>"]
 python = "^3.10"
 fastapi = "^0.78.0"
 uvicorn = "^0.18.2"
+SQLAlchemy = "^1.4.40"
+psycopg2-binary = "^2.9.3"
+alembic = "^1.8.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
@@ -17,6 +20,7 @@ pylint = "^2.14.5"
 flake8 = "^5.0.4"
 pytest = "^7.1.2"
 requests = "^2.28.1"
+sqlalchemy-stubs = "^0.4"
 
 [tool.isort]
 profile = "black"
@@ -25,7 +29,11 @@ profile = "black"
 max-line-length = "88"
 
 [tool.pylint.MASTER]
-disable = ["C0114", "C0116"]
+disable = ["C0114", "C0116", "C0115", "R0903"]
+ignore = "migrations"
+
+[tool.mypy]
+plugins = "sqlmypy"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
