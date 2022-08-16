@@ -30,6 +30,7 @@ max-line-length = "88"
 
 [tool.pylint.MASTER]
 disable = ["C0114", "C0116", "C0115", "R0903"]
+ignore = "migrations"
 
 [tool.mypy]
 plugins = "sqlmypy"
