@@ -483,6 +483,18 @@ pymysql = ["pymysql (<1)", "pymysql"]
 sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
+name = "sqlalchemy-stubs"
+version = "0.4"
+description = "SQLAlchemy stubs and mypy plugin"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+mypy = ">=0.790"
+typing-extensions = ">=3.7.4"
+
+[[package]]
 name = "starlette"
 version = "0.19.1"
 description = "The little ASGI library that shines."
@@ -559,7 +571,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "bd2623864fa2f439e68ec61dc25e4626f104f31b2ed8f6050f67b695c79d99e3"
+content-hash = "7fccce09fd50c296d08b6f956868c535606ad2304c6cbdee6a63a507c46e641b"
 
 [metadata.files]
 alembic = [
@@ -1005,6 +1017,10 @@ sqlalchemy = [
     {file = "SQLAlchemy-1.4.40-cp39-cp39-win32.whl", hash = "sha256:6b70d02bbe1adbbf715d2249cacf9ac17c6f8d22dfcb3f1a4fbc5bf64364da8a"},
     {file = "SQLAlchemy-1.4.40-cp39-cp39-win_amd64.whl", hash = "sha256:bf073c619b5a7f7cd731507d0fdc7329bee14b247a63b0419929e4acd24afea8"},
     {file = "SQLAlchemy-1.4.40.tar.gz", hash = "sha256:44a660506080cc975e1dfa5776fe5f6315ddc626a77b50bf0eee18b0389ea265"},
+]
+sqlalchemy-stubs = [
+    {file = "sqlalchemy-stubs-0.4.tar.gz", hash = "sha256:c665d6dd4482ef642f01027fa06c3d5e91befabb219dc71fc2a09e7d7695f7ae"},
+    {file = "sqlalchemy_stubs-0.4-py3-none-any.whl", hash = "sha256:5eec7aa110adf9b957b631799a72fef396b23ff99fe296df726645d01e312aa5"},
 ]
 starlette = [
     {file = "starlette-0.19.1-py3-none-any.whl", hash = "sha256:5a60c5c2d051f3a8eb546136aa0c9399773a689595e099e0877704d5888279bf"},
