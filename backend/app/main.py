@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(title="Psychological Counselling")
 
 
 @app.get("/healthcheck")
