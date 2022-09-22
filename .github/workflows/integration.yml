@@ -26,7 +26,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry env use "3.10"
           cd backend
           poetry install
 
