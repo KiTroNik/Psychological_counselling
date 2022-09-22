@@ -534,6 +534,17 @@ pycrypto = ["pycrypto (>=2.6.0,<2.7.0)", "pyasn1"]
 pycryptodome = ["pycryptodome (>=3.3.1,<4.0.0)", "pyasn1"]
 
 [[package]]
+name = "python-multipart"
+version = "0.0.5"
+description = "A streaming multipart parser for Python"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = ">=1.4.0"
+
+[[package]]
 name = "requests"
 version = "2.28.1"
 description = "Python HTTP for Humans."
@@ -653,6 +664,22 @@ optional = false
 python-versions = ">=3.6,<4.0"
 
 [[package]]
+name = "types-passlib"
+version = "1.7.7"
+description = "Typing stubs for passlib"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "types-python-jose"
+version = "3.3.4"
+description = "Typing stubs for python-jose"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.2.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -699,7 +726,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "490b1b0df94b485db233dc18e6e4dfd634ffff66474586b22e17abe0d73e8f54"
+content-hash = "5315a432e44a84d0088b639ab505bd8547ff37d506e7247b8a5aba2633442849"
 
 [metadata.files]
 alembic = [
@@ -1239,6 +1266,9 @@ python-jose = [
     {file = "python-jose-3.3.0.tar.gz", hash = "sha256:55779b5e6ad599c6336191246e95eb2293a9ddebd555f796a65f838f07e5d78a"},
     {file = "python_jose-3.3.0-py2.py3-none-any.whl", hash = "sha256:9b1376b023f8b298536eedd47ae1089bcdb848f1535ab30555cd92002d78923a"},
 ]
+python-multipart = [
+    {file = "python-multipart-0.0.5.tar.gz", hash = "sha256:f7bb5f611fc600d15fa47b3974c8aa16e93724513b49b5f95c81e6624c83fa43"},
+]
 requests = [
     {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
     {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
@@ -1308,6 +1338,14 @@ tomli = [
 tomlkit = [
     {file = "tomlkit-0.11.3-py3-none-any.whl", hash = "sha256:800628e7705ff7c7cc4395c29836c7073e55b9ec820e1fc696080f9c5591a789"},
     {file = "tomlkit-0.11.3.tar.gz", hash = "sha256:0ace4c975e0f3e6f71be8a2d61fe568777f1634bc80abff642cd3323ce709a0d"},
+]
+types-passlib = [
+    {file = "types-passlib-1.7.7.tar.gz", hash = "sha256:3a5f7e8cbe563ce71717a0fd92e25223c263418ffcaae61643b9bc1f701835cd"},
+    {file = "types_passlib-1.7.7-py3-none-any.whl", hash = "sha256:49fae3bb06f444fd452df1b1cdb584d592cf4086f4ece38166aa47efc95cff5a"},
+]
+types-python-jose = [
+    {file = "types-python-jose-3.3.4.tar.gz", hash = "sha256:a8331dd72da5adf03853d4c003d08d0621dd9eb7b7333571b04d81058c55fac6"},
+    {file = "types_python_jose-3.3.4-py3-none-any.whl", hash = "sha256:04fb427bc906e864e8c313db469920f71ffa85839b43fe355f7dc861330c6da3"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.2.0-py3-none-any.whl", hash = "sha256:6657594ee297170d19f67d55c05852a874e7eb634f4f753dbd667855e07c1708"},
