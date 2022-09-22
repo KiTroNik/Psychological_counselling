@@ -27,8 +27,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry env use "3.10"
           cd backend
+          poetry env use "3.10"
           poetry install
 
       - name: Formatters
