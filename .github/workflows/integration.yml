@@ -26,6 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          poetry env use "3.10"
           cd backend
           poetry install
 
@@ -41,3 +42,8 @@ jobs:
           poetry run mypy .
           poetry run flake8 .
           poetry run pylint app/
+
+      - name: Tests
+        run: |
+          cd backend
+          poetry run pytest .
