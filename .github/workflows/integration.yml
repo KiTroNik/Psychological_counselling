@@ -5,29 +5,46 @@ on: [push]
 jobs:
   backend:
     runs-on: ubuntu-latest
+    env:
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_HOST: db
+      SECRET_KEY: SomeSecret
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 5
+      REFRESH_TOKEN_EXPIRE_DAYS: 100
     steps:
       - uses: actions/checkout@v3
+
       - name: Install poetry
         run: pipx install poetry
-      - uses: actions/setup-python@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v4.2.0
         with:
           python-version: '3.10'
-          cache: 'poetry'
+          cache: "poetry"
+
       - name: Install dependencies
         run: |
           cd backend
+          poetry env use "3.10"
           poetry install
+
       - name: Formatters
         run: |
           cd backend
           poetry run black . --check
           poetry run isort . -c
+
       - name: Linters
         run: |
           cd backend
           poetry run mypy .
           poetry run flake8 .
           poetry run pylint app/
+
       - name: Tests
         run: |
           cd backend
