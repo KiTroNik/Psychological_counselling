@@ -4,11 +4,12 @@ from datetime import datetime, timedelta
 
 from fastapi import HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt, JWTError
+from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.core.security import verify_password
+from app.crud import crud_user
 from app.models.user import User
 from app.schemas.token import TokenData
 
@@ -16,7 +17,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/auth/token
 
 
 def authenticate(*, email: str, password: str, db: Session) -> User | None:
-    user = db.query(User).filter(User.email == email).first()  # todo: dac do cruda
+    user = crud_user.get_user_by_email(db, email=email)
     if not user:
         return None
     if not verify_password(password, user.hashed_password):
@@ -32,18 +33,16 @@ def get_user_from_jwt(*, db: Session, token: str) -> User:
 
     try:
         payload = jwt.decode(
-            token,
-            settings.SECRET_KEY,
-            algorithms=[settings.ALGORITHM]
+            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
         )
-        user_id: int = int(payload.get("sub"))
+        user_id: id = int(payload.get("sub"))  # type: ignore
         if not user_id:
             raise token_exception
         token_data = TokenData(id=user_id)
-    except JWTError:
-        raise token_exception
+    except JWTError as exc:
+        raise token_exception from exc
 
-    user = db.query(User).filter(User.id == token_data.id).first()  # todo: dac do cruda
+    user = crud_user.get_user_by_id(db=db, user_id=token_data.id)
     if not user:
         raise token_exception
     return user
