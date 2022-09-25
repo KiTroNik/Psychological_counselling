@@ -1,5 +1,5 @@
 # Psychological Councelling app
-This repository contains both backend (Django) and frontend (React) projects for my engineering work.
+This repository contains both backend (FastApi) and frontend (React) projects for my engineering work.
 
 ## Environment management
 ### Start backend as daemon

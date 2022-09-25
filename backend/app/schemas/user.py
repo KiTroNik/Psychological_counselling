@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pydantic import BaseModel, EmailStr
 
 
@@ -6,6 +8,12 @@ class UserBase(BaseModel):
     last_name: str
     email: EmailStr
     is_admin: bool
+
+
+class UserUpdate(BaseModel):
+    first_name: str | None
+    last_name: str | None
+    password: str | None
 
 
 class UserCreate(UserBase):

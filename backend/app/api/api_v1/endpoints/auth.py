@@ -11,7 +11,9 @@ from app.core.auth import (
     create_refresh_token,
     get_user_from_jwt,
 )
-from app.models.user import User
+from app.crud import crud_user
+from app.models import user as models
+from app.schemas import user as schemas
 from app.schemas.token import Token
 
 router = APIRouter()
@@ -68,7 +70,7 @@ def refresh_access_token(
 @router.get("/logout", status_code=status.HTTP_200_OK)
 def logout(
     response: Response,
-    user: User = Depends(deps.get_current_user),  # pylint: disable=W0613
+    user: models.User = Depends(deps.get_current_user),  # pylint: disable=W0613
     refresh_token: str | None = Cookie(default=None),
 ):
     """
@@ -78,3 +80,25 @@ def logout(
     if refresh_token:
         response.delete_cookie("refresh_token")
     return {"status": "success"}
+
+
+@router.get("/me", response_model=schemas.User)
+def read_users_me(current_user: models.User = Depends(deps.get_current_user)):
+    """
+    Fetch the current logged-in user.
+    """
+
+    return current_user
+
+
+@router.patch("/me", response_model=schemas.User)
+def update_users_me(
+    updated_user: schemas.UserUpdate,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_user),
+):
+    """
+    Update the current logged-in user.
+    """
+
+    return crud_user.update_user(db, updated_user, current_user.id)
