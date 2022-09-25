@@ -12,8 +12,8 @@ from app.core.auth import (
     get_user_from_jwt,
 )
 from app.models.user import User as user_model
-from app.schemas.user import User as user_schema
 from app.schemas.token import Token
+from app.schemas.user import User as user_schema
 
 router = APIRouter()
 
