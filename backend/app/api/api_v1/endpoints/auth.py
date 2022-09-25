@@ -90,10 +90,10 @@ def read_users_me(current_user: user_model = Depends(deps.get_current_user)):
     return current_user
 
 
-@router.patch("/me", response_model=user_schema)  # todo: add it
+@router.patch("/me", response_model=user_schema)
 def update_users_me(current_user: user_model = Depends(deps.get_current_user)):
     """
     Update the current logged-in user.
     """
 
-    pass
+    print("pending")
