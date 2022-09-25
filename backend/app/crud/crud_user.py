@@ -34,7 +34,7 @@ def update_user(db: Session, user: schemas.UserUpdate, user_id: int):
 
     update_data = user.dict(exclude_unset=True)
 
-    if update_data["password"]:
+    if "password" in update_data:
         db_user.hashed_password = get_password_hash(update_data.pop("password"))
 
     for key, value in update_data.items():

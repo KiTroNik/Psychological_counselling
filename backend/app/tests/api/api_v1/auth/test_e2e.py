@@ -1,5 +1,8 @@
 from fastapi import status
 
+from app.core.security import verify_password
+from app.models import user as models
+
 API_URL = "/api/v1/auth"
 
 
@@ -67,3 +70,19 @@ def test_get_users_me(logged_client, expected_user_fields, expected_user_data):
 def test_get_users_me_is_protected(client):
     response = client.get(f"{API_URL}/me")
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+
+def test_patch_me(logged_client, expected_user_fields):
+    response = logged_client.patch(f"{API_URL}/me", json={"first_name": "test"})
+    assert response.status_code == status.HTTP_200_OK
+    assert list(response.json().keys()) == expected_user_fields
+    assert response.json()["first_name"] == "test"
+
+
+def test_patch_me_password(logged_client, db):
+    response = logged_client.patch(f"{API_URL}/me", json={"password": "test"})
+    assert response.status_code == status.HTTP_200_OK
+    db_user: models.User = (
+        db.query(models.User).filter(models.User.id == 1).first()  # type: ignore
+    )
+    assert verify_password("test", db_user.hashed_password)
