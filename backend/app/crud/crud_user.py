@@ -25,3 +25,22 @@ def create_user(db: Session, user: schemas.UserCreate) -> models.User:
     db.refresh(db_obj)
 
     return db_obj
+
+
+def update_user(db: Session, user: schemas.UserUpdate, user_id: int):
+    db_user: models.User = (
+        db.query(models.User).filter(models.User.id == user_id).first()  # type: ignore
+    )
+
+    update_data = user.dict(exclude_unset=True)
+
+    if update_data["password"]:
+        db_user.hashed_password = get_password_hash(update_data.pop("password"))
+
+    for key, value in update_data.items():
+        setattr(db_user, key, value)
+
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
