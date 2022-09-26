@@ -1,17 +1,15 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Column, Integer, String
 
 from app.db.database import Base
 
 
-class User(Base):
-    __tablename__ = "users"
+class Patient(Base):
+    __tablename__ = "patients"
 
     id = Column(Integer, primary_key=True, index=True)
     first_name = Column(String(255), nullable=False)
     last_name = Column(String(255), nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
-    is_admin = Column(Boolean, default=False)
 
     def __repr__(self):
-        return f"User(id={self.id!r}, email={self.email!r}"
+        return f"Patient(id={self.id!r}, email={self.email!r}"
