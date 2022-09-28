@@ -1,22 +1,5 @@
 import pytest
 
-from app.crud import crud_user
-from app.schemas.user import UserCreate
-
-
-@pytest.fixture
-def user(db):
-    return crud_user.create_user(
-        db,
-        UserCreate(
-            first_name="Jan",
-            last_name="Nowak",
-            email="jan@nowak.pl",
-            is_admin=False,
-            password="foobar",
-        ),
-    )
-
 
 @pytest.fixture
 def expected_user_fields() -> list:
