@@ -67,10 +67,13 @@ def refresh_access_token(
     }
 
 
-@router.get("/logout", status_code=status.HTTP_200_OK)
+@router.get(
+    "/logout",
+    status_code=status.HTTP_200_OK,
+    dependencies=[Depends(deps.get_current_user)],
+)
 def logout(
     response: Response,
-    user: models.User = Depends(deps.get_current_user),  # pylint: disable=W0613
     refresh_token: str | None = Cookie(default=None),
 ):
     """

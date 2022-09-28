@@ -7,8 +7,10 @@ from sqlalchemy.orm import Session
 from sqlalchemy_utils import create_database, database_exists  # type: ignore
 
 from app.api.deps import get_db
+from app.crud import crud_user
 from app.db.database import Base
 from app.main import app
+from app.schemas.user import UserCreate
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 
@@ -43,6 +45,20 @@ def client(db):
 
     with TestClient(app) as c:
         yield c
+
+
+@pytest.fixture
+def user(db):
+    return crud_user.create_user(
+        db,
+        UserCreate(
+            first_name="Jan",
+            last_name="Nowak",
+            email="jan@nowak.pl",
+            is_admin=False,
+            password="foobar",
+        ),
+    )
 
 
 @pytest.fixture(scope="function")
