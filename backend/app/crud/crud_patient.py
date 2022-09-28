@@ -53,9 +53,7 @@ def delete_patient(db: Session, patient: models.Patient):
 
 
 def _create_filter_list(
-    email: str | None,
-    first_name: str | None,
-    last_name: str | None
+    email: str | None, first_name: str | None, last_name: str | None
 ):
     all_filters: list = []
 
