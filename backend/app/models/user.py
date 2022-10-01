@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.db.database import Base
-from app.models.appointment import Appointment  # pylint: disable=W0611
+from app.models.appointment import Appointment  # pylint: disable=W0611 # noqa: F401
 
 
 class User(Base):
