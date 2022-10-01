@@ -20,5 +20,7 @@ class Appointment(Base):
     user = relationship("User", back_populates="appointments")  # type: ignore
 
     def __repr__(self):
-        return (f"Appointment(id={self.id!r}), date={self.date!r},"
-                f" patient_id={self.patient_id!r}, user_id={self.user_id!r}")
+        return (
+            f"Appointment(id={self.id!r}), date={self.date!r},"
+            f" patient_id={self.patient_id!r}, user_id={self.user_id!r}"
+        )
