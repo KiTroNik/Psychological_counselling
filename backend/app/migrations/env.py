@@ -5,6 +5,7 @@ from sqlalchemy import engine_from_config, pool
 
 from app.core.config import settings
 from app.db.database import Base
+from app.models import appointment  # noqa: F401
 from app.models import patient  # noqa: F401
 from app.models import user  # noqa: F401
 
