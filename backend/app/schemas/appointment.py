@@ -4,21 +4,24 @@ import datetime
 
 from pydantic import BaseModel
 
+from app.schemas.patient import Patient
+
 
 class AppointmentCreate(BaseModel):
     date: datetime.datetime
     patient_id: int
-    user_id: int
 
 
-class AppointmentBase(AppointmentCreate):
+class AppointmentBase(BaseModel):
+    date: datetime.datetime
     is_cancelled: bool
     is_completed: bool
-    notes: str
+    notes: str | None
 
 
 class Appointment(AppointmentBase):
     id: int
+    patient: Patient
 
     class Config:
         orm_mode = True
