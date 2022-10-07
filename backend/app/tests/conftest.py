@@ -55,7 +55,6 @@ def user(db):
             first_name="Jan",
             last_name="Nowak",
             email="jan@nowak.pl",
-            is_admin=False,
             password="foobar",
         ),
     )
