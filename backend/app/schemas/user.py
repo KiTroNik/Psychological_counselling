@@ -7,7 +7,6 @@ class UserBase(BaseModel):
     first_name: str
     last_name: str
     email: EmailStr
-    is_admin: bool
 
 
 class UserUpdate(BaseModel):
@@ -21,6 +20,7 @@ class UserCreate(UserBase):
 
 
 class User(UserBase):
+    is_admin: bool
     id: int
 
     class Config:
