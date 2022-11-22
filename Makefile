@@ -15,6 +15,9 @@ help:
 	@echo -e "backend-test\t\t\t\t -- run tests backend container"
 	@echo -e "backend-reformat\t\t\t -- reformat code on backend"
 	@echo -e "backend-lint\t\t\t\t -- check backend code by linters"
+	@echo -e "frontend-reformat\t\t\t -- reformat code on frontend"
+	@echo -e "frontend-lint\t\t\t\t -- check frontend code by linters"
+
 
 backend-up:
 	@$(COMPOSE) up -d backend
@@ -59,4 +62,15 @@ backend-lint:
 		flake8 .;\
 		pylint app/;\
 		mypy .;\
+		"; 3>/dev/null
+
+frontend-format:
+	@$(COMPOSE) run --rm --no-deps frontend bash -c "\
+		yarn format;\
+		"; 3>/dev/null
+
+frontend-lint:
+	@$(COMPOSE) run --rm --no-deps frontend bash -c "\
+		yarn lint;\
+		yarn typecheck;\
 		"; 3>/dev/null
