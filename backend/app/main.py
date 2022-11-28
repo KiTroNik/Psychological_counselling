@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from sqladmin import Admin  # type: ignore
 
 from app.admin.appointment import AppointmentAdmin
@@ -10,6 +11,13 @@ from app.db.database import engine
 
 app = FastAPI(
     title="Psychological Counselling", openapi_url=f"{settings.API_V1_STR}/openapi.json"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:1234"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
