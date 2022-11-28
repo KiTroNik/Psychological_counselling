@@ -49,3 +49,35 @@ jobs:
         run: |
           cd backend
           poetry run pytest .
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Formatters
+        run: |
+          cd frontend
+          npm run format:check
+
+      - name: Linters
+        run: |
+          cd frontend
+          npm run lint
+          npm run typecheck
+
+      - name: Tests
+        run: |
+          cd frontend
+          npm t
