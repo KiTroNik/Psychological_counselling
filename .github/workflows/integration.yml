@@ -49,3 +49,36 @@ jobs:
         run: |
           cd backend
           poetry run pytest .
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "yarn"
+          cache-dependency-path: frontend/yarn.lock
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          yarn install --frozen-lockfile
+
+      - name: Formatters
+        run: |
+          cd frontend
+          yarn run format:check
+
+      - name: Linters
+        run: |
+          cd frontend
+          yarn run lint
+          yarn run typecheck
+
+      - name: Tests
+        run: |
+          cd frontend
+          yarn run jest
