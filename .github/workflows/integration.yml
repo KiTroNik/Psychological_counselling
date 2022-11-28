@@ -59,25 +59,25 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "npm"
+          cache: "yarn"
 
       - name: Install dependencies
         run: |
           cd frontend
-          npm ci
+          yarn install --frozen-lockfile
 
       - name: Formatters
         run: |
           cd frontend
-          npm run format:check
+          yarn run format:check
 
       - name: Linters
         run: |
           cd frontend
-          npm run lint
-          npm run typecheck
+          yarn run lint
+          yarn run typecheck
 
       - name: Tests
         run: |
           cd frontend
-          npm t
+          yarn t
