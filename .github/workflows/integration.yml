@@ -60,7 +60,7 @@ jobs:
         with:
           node-version: 16
           cache: "yarn"
-      - run: cd frontend
+          cache-dependency-path: frontend/yarn.lock
 
       - name: Install dependencies
         run: |
