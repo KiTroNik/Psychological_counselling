@@ -60,6 +60,7 @@ jobs:
         with:
           node-version: 16
           cache: "yarn"
+      - run: cd frontend
 
       - name: Install dependencies
         run: |
