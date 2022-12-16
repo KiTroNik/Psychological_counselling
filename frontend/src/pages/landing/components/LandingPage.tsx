@@ -1,11 +1,13 @@
 import { Header } from "../../../shared";
 import Hero from "./Hero";
+import { Footer } from "../../../shared";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <Header/>
       <Hero />
+      <Footer />
     </div>
   );
 };

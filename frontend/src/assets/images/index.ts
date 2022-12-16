@@ -2,5 +2,4 @@
 import Psychology from "./Psychology.png";
 import HeroImage from "./HeroImage.png";
 
-export {Psychology};
-export {HeroImage};
+export {Psychology, HeroImage};
