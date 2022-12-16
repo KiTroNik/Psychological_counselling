@@ -1,8 +1,12 @@
 import { Header } from "../../../shared";
+import Hero from "./Hero";
 
 const LandingPage = () => {
   return (
-    <Header/>
+    <div>
+      <Header/>
+      <Hero />
+    </div>
   );
 };
 
