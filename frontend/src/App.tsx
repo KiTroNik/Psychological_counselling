@@ -1,9 +1,14 @@
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { LandingPage } from "./pages/landing";
+import APP_ROUTES from "./core/routes";
+
 const App = () => {
   return (
     <div>
-      <h1 data-testid="h1-test" className="text-3xl font-bold underline">
-        Hello World
-      </h1>
+      <Routes>
+        <Route path={APP_ROUTES.LANDING} element={<LandingPage />} />
+      </Routes>
     </div>
   );
 };
