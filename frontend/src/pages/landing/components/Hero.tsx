@@ -14,7 +14,10 @@ const Hero = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <h1 data-testid="heading" className="mb-12 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
+          <h1
+            data-testid="heading"
+            className="mb-12 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl"
+          >
             Your personal online <br />
             <span className="text-indigo-500">psychological cabinet.</span>
           </h1>
