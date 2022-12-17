@@ -1,14 +1,9 @@
-import {
-  ClientsSVG,
-  EmailSVG,
-  CalendarSVG,
-  PenSVG,
-  FeatureCard,
-} from "./index";
+import { FeatureCard } from "./index";
+import { ClientsSVG, PenSVG, EmailSVG, CalendarSVG } from "../../../shared";
 
 const Features = () => {
   return (
-    <article className="bg-indigo-50 p-10">
+    <article className="p-10">
       <div className="m-auto max-w-screen-2xl text-center md:grid md:grid-cols-17 md:grid-rows-3">
         <div className="mb-3 rounded-lg bg-indigo-900 p-12 pb-24 shadow-2xl md:col-start-1 md:col-end-18 md:row-start-1 md:row-end-3">
           <h2 className="mb-3 bg-gradient-to-r from-purple-200 via-purple-400 to-purple-800 bg-clip-text text-4xl font-extrabold text-transparent md:text-6xl">
