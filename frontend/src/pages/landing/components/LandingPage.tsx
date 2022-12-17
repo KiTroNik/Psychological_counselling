@@ -5,7 +5,7 @@ import { Features, Hero } from "./index";
 const LandingPage = () => {
   return (
     <div className="min-h-screen">
-      <Header/>
+      <Header />
       <Hero />
       <Features />
       <Footer />
@@ -13,4 +13,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage
+export default LandingPage;

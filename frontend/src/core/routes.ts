@@ -1,5 +1,5 @@
 const APP_ROUTES = {
-  LANDING: "/"
-}
+  LANDING: "/",
+};
 
 export default APP_ROUTES;
