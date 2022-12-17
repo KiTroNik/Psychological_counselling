@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { UserSVG } from "../../../shared";
 
 const LoginForm = () => {
   return (
     <div className="block rounded-lg bg-white p-6 shadow-lg sm:mx-auto sm:max-w-lg">
-      <p className="font-gray-800 mb-6 text-xl font-bold">
+      <UserSVG clsName="mb-6 h-24 w-24 m-auto stroke-1 stroke-indigo-600" />
+
+      <p className="font-gray-800 mb-6 text-center text-xl font-bold">
         Sign in to your account
       </p>
 
