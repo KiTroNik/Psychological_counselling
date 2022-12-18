@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
 import { UserSVG } from "../../../shared";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   return (
     <div className="block rounded-lg bg-white p-6 shadow-lg sm:mx-auto sm:max-w-lg">
       <UserSVG clsName="mb-6 h-24 w-24 m-auto stroke-1 stroke-indigo-600" />
@@ -10,7 +29,7 @@ const LoginForm = () => {
         Sign in to your account
       </p>
 
-      <form action="#" method="POST">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label
             htmlFor="email"
@@ -22,13 +41,19 @@ const LoginForm = () => {
         <div>
           <input
             id="email"
-            name="email"
-            type="email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: "This should be valid email address.",
+              },
+            })}
+            type="text"
             autoComplete="email"
-            required
-            className="form-control font normal m-0 mb-6 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base text-gray-700 transition ease-in-out focus:text-gray-700"
+            className="form-control font normal m-0 mb-1 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base text-gray-700 transition ease-in-out focus:text-gray-700"
             placeholder="Enter email"
           />
+          <p className="mb-6 text-red-500">{errors.email?.message}</p>
         </div>
 
         <div className="form-group">
@@ -42,12 +67,18 @@ const LoginForm = () => {
         <div>
           <input
             id="password"
-            name="password"
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must have at least 8 characters.",
+              },
+            })}
             type="password"
-            required
-            className="form-control font normal m-0 mb-6 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base text-gray-700 transition ease-in-out focus:text-gray-700"
+            className="form-control font normal m-0 mb-1 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base text-gray-700 transition ease-in-out focus:text-gray-700"
             placeholder="Password"
           />
+          <p className="mb-6 text-red-500">{errors.password?.message}</p>
         </div>
 
         <button
