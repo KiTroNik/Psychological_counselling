@@ -38,7 +38,11 @@ def login_for_token(
         )
 
     response.set_cookie(
-        key="refresh_token", value=create_refresh_token(sub=str(user.id)), httponly=True
+        key="refresh_token",
+        value=create_refresh_token(sub=str(user.id)),
+        httponly=True,
+        samesite="none",
+        secure=True,
     )
     return {
         "access_token": create_access_token(sub=str(user.id)),
@@ -81,7 +85,7 @@ def logout(
     """
 
     if refresh_token:
-        response.delete_cookie("refresh_token")
+        response.delete_cookie("refresh_token", samesite="none", secure=True)
     return {"status": "success"}
 
 

@@ -2,7 +2,7 @@ import { HeroImage } from "../../../assets";
 
 const Hero = () => {
   return (
-    <div className="bg-indigo-50 p-10">
+    <div className="p-10">
       <article className="mx-auto max-w-screen-2xl sm:mx-auto md:flex md:items-center md:justify-around">
         <div className="max-w-fill m-0 rounded-lg shadow-2xl shadow-indigo-500/50 md:order-2">
           <img
