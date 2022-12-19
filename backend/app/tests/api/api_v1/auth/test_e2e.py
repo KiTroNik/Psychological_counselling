@@ -47,13 +47,6 @@ def test_refresh_token_with_invalid_token(user, client):
     assert response_refresh.status_code == status.HTTP_401_UNAUTHORIZED
 
 
-def test_logout(logged_client):
-    assert logged_client.cookies.get("refresh_token") is not None
-    response = logged_client.get(f"{API_URL}/logout")
-    assert response.status_code == status.HTTP_200_OK
-    assert logged_client.cookies.get("refresh_token") is None
-
-
 def test_logout_is_protected(client):
     assert client.cookies.get("refresh_token") is None
     response = client.get(f"{API_URL}/logout")
