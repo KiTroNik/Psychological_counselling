@@ -38,7 +38,11 @@ def login_for_token(
         )
 
     response.set_cookie(
-        key="refresh_token", value=create_refresh_token(sub=str(user.id)), httponly=True, samesite="none", secure=True
+        key="refresh_token",
+        value=create_refresh_token(sub=str(user.id)),
+        httponly=True,
+        samesite="none",
+        secure=True,
     )
     return {
         "access_token": create_access_token(sub=str(user.id)),
