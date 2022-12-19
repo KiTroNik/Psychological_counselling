@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { UserSVG } from "../../../shared";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useContext, useState } from "react";
+import AuthContext from "../../../shared/context/AuthContext";
+import { useApi } from "../../../core";
+import { ILogin } from "../models";
+import { AxiosError } from "axios";
 
 type Inputs = {
   email: string;
@@ -8,6 +13,10 @@ type Inputs = {
 };
 
 const LoginForm = () => {
+  const [loginError, setLoginError] = useState("");
+  const { login } = useContext(AuthContext);
+  const api = useApi();
+
   const {
     register,
     handleSubmit,
@@ -19,7 +28,31 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const bodyFormData = new FormData();
+    bodyFormData.append("username", data.email);
+    bodyFormData.append("password", data.password);
+
+    try {
+      const response = await api.post<ILogin>(
+        "http://localhost:8000/api/v1/auth/token",
+        bodyFormData,
+        {
+          headers: {
+            "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          },
+        }
+      );
+      login();
+      localStorage.setItem("token", response.data.access_token);
+    } catch (err) {
+      const error = err as AxiosError;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      setLoginError(error.response.data.detail);
+    }
+  };
 
   return (
     <div className="block rounded-lg bg-white p-6 shadow-lg sm:mx-auto sm:max-w-lg">
@@ -80,6 +113,8 @@ const LoginForm = () => {
           />
           <p className="mb-6 text-red-500">{errors.password?.message}</p>
         </div>
+
+        {loginError !== "" && <p className="mb-6 text-red-500">{loginError}</p>}
 
         <button
           type="submit"

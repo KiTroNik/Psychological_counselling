@@ -1,6 +1,6 @@
 const APP_ROUTES = {
   LANDING: "/",
-  LOGIN: "/login"
+  LOGIN: "/login",
 };
 
 export default APP_ROUTES;
