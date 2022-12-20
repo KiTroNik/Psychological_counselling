@@ -8,7 +8,7 @@ const LoginPage = () => {
           Welcome back
         </h2>
         <p className="mb-6  font-medium text-gray-500">
-          Log in and start managing your personal online psychological cabinet
+          Log in and start managing your personal online psychological cabinet.
         </p>
       </div>
 

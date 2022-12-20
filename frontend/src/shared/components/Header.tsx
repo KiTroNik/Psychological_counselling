@@ -72,12 +72,12 @@ const Header = () => {
                 >
                   Login
                 </Link>
-                <a
-                  href="/"
+                <Link
+                  to={APP_ROUTES.REGISTER}
                   className="mr-2 mb-2 mt-2 rounded-lg bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-lg shadow-purple-500/50 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-purple-300"
                 >
                   Register
-                </a>
+                </Link>
               </>
             )}
           </div>

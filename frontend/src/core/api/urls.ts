@@ -3,6 +3,7 @@ const API_URLS = {
     LOGIN: "/auth/token/",
     REFRESH: "/auth/refresh",
     LOGOUT: "/auth/logout",
+    REGISTER: "/auth/register",
   },
 };
 
