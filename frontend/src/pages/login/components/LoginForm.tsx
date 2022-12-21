@@ -6,6 +6,7 @@ import AuthContext from "../../../shared/context/AuthContext";
 import { useApi } from "../../../core";
 import { ILogin } from "../models";
 import { AxiosError } from "axios";
+import APP_ROUTES from "../../../core/routes";
 
 type Inputs = {
   email: string;
@@ -127,7 +128,7 @@ const LoginForm = () => {
       <p className="mt-6 text-center text-gray-500">
         No account?{" "}
         <Link
-          to="/"
+          to={APP_ROUTES.REGISTER}
           className="text-blue-600 transition duration-200 ease-in-out hover:text-blue-700"
         >
           Sign up

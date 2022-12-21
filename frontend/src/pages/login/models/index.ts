@@ -1,1 +1,1 @@
-export { ILogin } from "./Login.model";
+export { default as ILogin } from "./Login.model";

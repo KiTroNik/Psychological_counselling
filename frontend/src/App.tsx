@@ -4,6 +4,7 @@ import { LandingPage } from "./pages/landing";
 import { LoginPage } from "./pages/login";
 import APP_ROUTES from "./core/routes";
 import { Header, Footer } from "./shared";
+import { RegisterPage } from "./pages/register";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path={APP_ROUTES.LANDING} element={<LandingPage />} />
         <Route path={APP_ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path={APP_ROUTES.REGISTER} element={<RegisterPage />} />
       </Routes>
       <Footer />
     </div>

@@ -8,6 +8,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:testing-library/react",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier"
   ],
   "rules": {
@@ -26,7 +27,8 @@
     "import",
     "jsx-a11y",
     "@typescript-eslint",
-    "testing-library"
+    "testing-library",
+    "@tanstack/query"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

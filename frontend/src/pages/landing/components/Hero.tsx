@@ -1,4 +1,6 @@
 import { HeroImage } from "../../../assets";
+import { Link } from "react-router-dom";
+import APP_ROUTES from "../../../core/routes";
 
 const Hero = () => {
   return (
@@ -25,12 +27,12 @@ const Hero = () => {
             The app which helps you to run your cabinet without stress. <br />
             It is simple, secure and intuitive
           </p>
-          <a
-            href="/"
+          <Link
+            to={APP_ROUTES.LOGIN}
             className="inline-block rounded-lg bg-indigo-500 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-2xl transition duration-150 ease-in-out hover:bg-indigo-700 hover:shadow-2xl focus:bg-indigo-700 focus:shadow-2xl focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-2xl"
           >
             Get started
-          </a>
+          </Link>
         </div>
       </article>
     </div>
