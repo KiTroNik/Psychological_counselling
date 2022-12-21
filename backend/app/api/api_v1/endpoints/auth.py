@@ -19,7 +19,9 @@ from app.schemas.token import Token
 router = APIRouter()
 
 
-@router.post("/register", response_model=schemas.User, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "/register", response_model=schemas.User, status_code=status.HTTP_201_CREATED
+)
 def create_user(
     user: schemas.UserCreate,
     db: Session = Depends(deps.get_db),

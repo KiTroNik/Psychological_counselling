@@ -13,7 +13,7 @@ def test_create_user_returns_201(client):
             "first_name": "John",
             "last_name": "Doe",
             "email": "john@doe.com",
-            "password": "Validpassword123"
+            "password": "Validpassword123",
         },
     )
     assert response.status_code == status.HTTP_201_CREATED
@@ -26,7 +26,7 @@ def test_crate_user_returns_valid_data(client, expected_user_data):
             "first_name": "Jan",
             "last_name": "Nowak",
             "email": "jan@nowak.pl",
-            "password": "Validpassword123"
+            "password": "Validpassword123",
         },
     )
     assert response.json() == expected_user_data
