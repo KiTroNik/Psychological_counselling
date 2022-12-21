@@ -5,6 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AuthProvider } from "./shared/context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +26,7 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <App />
+          <ToastContainer theme="dark" position="bottom-left" />
         </AuthProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
