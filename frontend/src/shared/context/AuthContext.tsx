@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface AuthContextInterface {
   isLogged: boolean;
@@ -22,10 +23,12 @@ export const AuthProvider = ({ children }: authProviderProps) => {
 
   const login = () => {
     setIsLogged(true);
+    toast.success("Welcome :)");
   };
 
   const logout = () => {
     setIsLogged(false);
+    toast.success("Good bye.");
   };
 
   return (
