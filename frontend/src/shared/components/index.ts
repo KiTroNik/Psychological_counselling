@@ -6,3 +6,4 @@ export { default as EmailSVG } from "./EmailSVG";
 export { default as PenSVG } from "./PenSVG";
 export { default as UserSVG } from "./UserSVG";
 export { default as ErrorPage } from "./ErrorPage";
+export { default as PrivateRoute } from "./PrivateRoute";

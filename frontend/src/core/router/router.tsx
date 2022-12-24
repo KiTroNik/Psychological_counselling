@@ -5,6 +5,7 @@ import App from "../../App";
 import { LoginPage } from "../../pages/login";
 import { RegisterPage } from "../../pages/register";
 import { ErrorPage } from "../../shared";
+import { PrivateRoute } from "../../shared";
 
 const router = createBrowserRouter([
   {
