@@ -5,13 +5,20 @@ import { useContext, useState } from "react";
 import AuthContext from "../../../shared/context/AuthContext";
 import { useApi } from "../../../core";
 import { ILogin } from "../models";
-import { AxiosError } from "axios";
 import APP_ROUTES from "../../../core/routes";
 
 type Inputs = {
   email: string;
   password: string;
 };
+
+interface IErorr {
+  response: {
+    data: {
+      detail: string;
+    };
+  };
+}
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState("");
@@ -47,10 +54,7 @@ const LoginForm = () => {
       login();
       localStorage.setItem("token", response.data.access_token);
     } catch (err) {
-      const error = err as AxiosError;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      const error = err as IErorr;
       setLoginError(error.response.data.detail);
     }
   };
