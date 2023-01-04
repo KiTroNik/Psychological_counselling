@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserSVG } from "../../../shared";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../../../shared/context/AuthContext";
 import { useApi } from "../../../core";
 import { ILogin } from "../models";
@@ -21,6 +21,7 @@ interface IErorr {
 }
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const { login } = useContext(AuthContext);
   const api = useApi();
@@ -51,8 +52,9 @@ const LoginForm = () => {
           },
         }
       );
-      login();
       localStorage.setItem("token", response.data.access_token);
+      login();
+      navigate("/dashboard");
     } catch (err) {
       const error = err as IErorr;
       setLoginError(error.response.data.detail);
