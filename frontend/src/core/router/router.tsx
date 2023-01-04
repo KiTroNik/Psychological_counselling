@@ -5,7 +5,7 @@ import App from "../../App";
 import { LoginPage } from "../../pages/login";
 import { RegisterPage } from "../../pages/register";
 import { ErrorPage, PrivateRoute } from "../../shared";
-import { DashboardPage } from "../../pages/dashboard";
+import { DashboardPage, DashboardIndex } from "../../pages/dashboard";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             <DashboardPage />
           </PrivateRoute>
         ),
-        // children: [{ index: true, element: <LoginPage /> }],
+        children: [{ index: true, element: <DashboardIndex /> }],
       },
     ],
   },

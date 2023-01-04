@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import APP_ROUTES from "../../core/routes";
 import { toast } from "react-toastify";
