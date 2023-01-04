@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../context";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import APP_ROUTES from "../../core/routes";
 import { toast } from "react-toastify";
@@ -9,7 +8,7 @@ interface privateRouteProps {
 }
 
 const PrivateRoute = ({ children }: privateRouteProps) => {
-  const { isLogged } = useContext(AuthContext);
+  const [isLogged] = useState(localStorage.getItem("token") !== null);
 
   useEffect(() => {
     if (!isLogged) {
@@ -17,7 +16,7 @@ const PrivateRoute = ({ children }: privateRouteProps) => {
         toastId: "warning1",
       });
     }
-  });
+  }, [isLogged]);
 
   return isLogged ? <>{children}</> : <Navigate to={APP_ROUTES.LOGIN} />;
 };

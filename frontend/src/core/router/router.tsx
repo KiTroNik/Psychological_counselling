@@ -4,7 +4,8 @@ import { LandingPage } from "../../pages/landing";
 import App from "../../App";
 import { LoginPage } from "../../pages/login";
 import { RegisterPage } from "../../pages/register";
-import { ErrorPage } from "../../shared";
+import { ErrorPage, PrivateRoute } from "../../shared";
+import { DashboardPage, DashboardIndex } from "../../pages/dashboard";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,15 @@ const router = createBrowserRouter([
       {
         path: APP_ROUTES.REGISTER,
         element: <RegisterPage />,
+      },
+      {
+        path: APP_ROUTES.DASHBOARD,
+        element: (
+          <PrivateRoute>
+            <DashboardPage />
+          </PrivateRoute>
+        ),
+        children: [{ index: true, element: <DashboardIndex /> }],
       },
     ],
   },
