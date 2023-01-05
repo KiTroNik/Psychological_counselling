@@ -16,6 +16,7 @@ class User(Base):
     is_admin = Column(Boolean, default=False)
 
     appointments = relationship("Appointment", back_populates="user")
+    patients = relationship("Patient", back_populates="user")
 
     def __repr__(self):
         return f"User(id={self.id!r}, email={self.email!r})"

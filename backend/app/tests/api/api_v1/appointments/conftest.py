@@ -13,6 +13,7 @@ def appointments(db):
     crud_patient.create_patient(
         db,
         PatientBase(first_name="Albert", last_name="Fish", email="albert@fish.com"),
+        user_id=1
     )
     crud_user.create_user(
         db,

@@ -4,6 +4,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.models import patient as models
+from app.models.user import User
 from app.schemas import patient as schemas
 
 
@@ -11,23 +12,29 @@ def get_patient_by_id(db: Session, patient_id: int) -> models.Patient | None:
     return db.query(models.Patient).filter(models.Patient.id == patient_id).first()
 
 
-def get_all_patients(
+def get_all_user_patients(
     db: Session,
     *,
+    user: User,
     email: str | None,
     first_name: str | None,
     last_name: str | None,
 ):
     return (
         db.query(models.Patient)
-        .filter(*_create_filter_list(email, first_name, last_name))
+        .filter(
+            *_create_filter_list(
+                email, first_name, last_name
+            ),
+            models.Patient.user_id == user.id,
+        )
         .all()
     )
 
 
-def create_patient(db: Session, patient: schemas.PatientBase):
+def create_patient(db: Session, patient: schemas.PatientBase, user_id: int):
     create_data = patient.dict()
-    db_obj = models.Patient(**create_data)
+    db_obj = models.Patient(**create_data, user_id=user_id)
     db.add(db_obj)
     db.commit()
     db.refresh(db_obj)
