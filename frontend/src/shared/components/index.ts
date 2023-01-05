@@ -12,3 +12,4 @@ export { default as LogoutSVG } from "./LogoutSVG";
 export { default as ErrorPage } from "./ErrorPage";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as Sidebar } from "./Sidebar";
+export { default as PageLoader } from "./PageLoader";

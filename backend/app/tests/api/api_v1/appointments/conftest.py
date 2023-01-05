@@ -13,6 +13,7 @@ def appointments(db):
     crud_patient.create_patient(
         db,
         PatientBase(first_name="Albert", last_name="Fish", email="albert@fish.com"),
+        user_id=1,
     )
     crud_user.create_user(
         db,
@@ -26,17 +27,23 @@ def appointments(db):
 
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(date=datetime.datetime(2022, 5, 15), patient_id=1),
+        AppointmentCreate(
+            date=datetime.datetime(2022, 5, 15), patient_id=1, name="first"
+        ),
         user_id=1,
     )
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(date=datetime.datetime(2022, 5, 12), patient_id=1),
+        AppointmentCreate(
+            date=datetime.datetime(2022, 5, 12), patient_id=1, name="second"
+        ),
         user_id=1,
     )
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(date=datetime.datetime(2022, 5, 16), patient_id=1),
+        AppointmentCreate(
+            date=datetime.datetime(2022, 5, 16), patient_id=1, name="third"
+        ),
         user_id=2,
     )
 
@@ -46,6 +53,7 @@ def expected_appointments_data() -> list:
     return [
         {
             "date": "2022-05-15T00:00:00",
+            "name": "first",
             "is_cancelled": False,
             "is_completed": False,
             "notes": None,
@@ -59,6 +67,7 @@ def expected_appointments_data() -> list:
         },
         {
             "date": "2022-05-12T00:00:00",
+            "name": "second",
             "is_cancelled": False,
             "is_completed": False,
             "notes": None,
@@ -77,6 +86,7 @@ def expected_appointments_data() -> list:
 def expected_first_appointment_data() -> dict:
     return {
         "date": "2022-05-15T00:00:00",
+        "name": "first",
         "is_cancelled": False,
         "is_completed": False,
         "notes": None,
@@ -94,6 +104,7 @@ def expected_first_appointment_data() -> dict:
 def expected_created_appointment_data() -> dict:
     return {
         "date": "2137-05-15T00:00:00",
+        "name": "fourth",
         "is_cancelled": False,
         "is_completed": False,
         "notes": None,
@@ -111,6 +122,7 @@ def expected_created_appointment_data() -> dict:
 def expected_updated_appointment_data() -> dict:
     return {
         "date": "2022-05-15T00:00:00",
+        "name": "first",
         "is_cancelled": False,
         "is_completed": False,
         "notes": "some note",

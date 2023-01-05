@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.db.database import Base
@@ -14,6 +14,9 @@ class Patient(Base):
     email = Column(String, unique=True, index=True, nullable=False)
 
     appointments = relationship("Appointment", back_populates="patient")
+
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user = relationship("User", back_populates="patients")  # type: ignore
 
     def __repr__(self):
         return f"Patient(id={self.id!r}, email={self.email!r})"
