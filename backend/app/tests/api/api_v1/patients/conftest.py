@@ -11,17 +11,17 @@ def patients(db):
         PatientBase(
             first_name="Albert", last_name="Einstein", email="albert@einstein.com"
         ),
-        user_id=1
+        user_id=1,
     )
     crud_patient.create_patient(
         db,
         PatientBase(first_name="Nicola", last_name="Tesla", email="nicola@tesla.com"),
-        user_id=1
+        user_id=1,
     )
     crud_patient.create_patient(
         db,
         PatientBase(first_name="Sigmund", last_name="Freud", email="sigmund@freud.com"),
-        user_id=1
+        user_id=1,
     )
 
 

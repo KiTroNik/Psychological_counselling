@@ -52,7 +52,7 @@ def read_patient(
     if db_patient.user_id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Patient doesn't belong to currently logged in user."
+            detail="Patient doesn't belong to currently logged in user.",
         )
     return db_patient
 
@@ -96,7 +96,7 @@ def update_patient(
     if db_patient.user_id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Patient doesn't belong to currently logged in user."
+            detail="Patient doesn't belong to currently logged in user.",
         )
     return crud_patient.update_patient(
         db, patient_updated=updated_patient, patient=db_patient
@@ -121,7 +121,7 @@ def delete_patient(
     if db_patient.user_id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Patient doesn't belong to currently logged in user."
+            detail="Patient doesn't belong to currently logged in user.",
         )
     crud_patient.delete_patient(db, db_patient)
     return {"status": "successfully deleted."}

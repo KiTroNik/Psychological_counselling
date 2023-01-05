@@ -27,7 +27,12 @@ def get_all_user_appointments(
         .join(Patient)
         .filter(
             *_create_filter_list(
-                date, name, is_cancelled, is_completed, patient_first_name, patient_last_name
+                date,
+                name,
+                is_cancelled,
+                is_completed,
+                patient_first_name,
+                patient_last_name,
             ),
             models.Appointment.user_id == user.id,
         )
@@ -75,7 +80,7 @@ def delete_appointment(db: Session, appointment: models.Appointment):
     db.commit()
 
 
-def _create_filter_list(
+def _create_filter_list(  # pylint: disable=R0913
     date: datetime.date | None,
     name: str | None,
     is_cancelled: bool | None,

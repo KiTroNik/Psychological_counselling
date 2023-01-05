@@ -28,6 +28,7 @@ class Appointment(AppointmentBase):
     class Config:
         orm_mode = True
 
+
 class AppointmentUpdate(BaseModel):
     date: datetime.datetime | None
     name: str | None
