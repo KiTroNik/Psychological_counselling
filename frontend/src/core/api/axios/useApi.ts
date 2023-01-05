@@ -41,6 +41,10 @@ const UseApi = () => {
             );
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             localStorage.setItem("token", response.data.access_token);
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            delete orginalRequest.headers["Authorization"];
+            axios.defaults.headers.common["Authorization"] =
+              "Bearer " + response.data.access_token;
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             return axios(orginalRequest);
           } catch (responseError) {
