@@ -13,7 +13,7 @@ router = APIRouter()
 
 @router.get(
     "/",
-    response_model=list[schemas.Patient],
+    response_model=list[schemas.PatientList],
 )
 def patients_list(
     db: Session = Depends(deps.get_db),
@@ -59,7 +59,7 @@ def read_patient(
 
 @router.post(
     "/",
-    response_model=schemas.Patient,
+    response_model=schemas.PatientList,
     status_code=status.HTTP_201_CREATED,
 )
 def create_patient(
@@ -76,7 +76,7 @@ def create_patient(
 
 @router.patch(
     "/{patient_id}",
-    response_model=schemas.Patient,
+    response_model=schemas.PatientList,
 )
 def update_patient(
     patient_id: int,

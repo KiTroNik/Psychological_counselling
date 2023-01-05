@@ -8,6 +8,7 @@ class Appointment(Base):
     __tablename__ = "appointments"
 
     id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
     date = Column(DateTime, nullable=False)
     is_cancelled = Column(Boolean, default=False)
     is_completed = Column(Boolean, default=False)

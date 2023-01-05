@@ -16,6 +16,7 @@ def get_all_user_appointments(
     db: Session,
     user: User,
     date: datetime.date | None,
+    name: str | None,
     is_cancelled: bool | None,
     is_completed: bool | None,
     patient_first_name: str | None,
@@ -26,7 +27,7 @@ def get_all_user_appointments(
         .join(Patient)
         .filter(
             *_create_filter_list(
-                date, is_cancelled, is_completed, patient_first_name, patient_last_name
+                date, name, is_cancelled, is_completed, patient_first_name, patient_last_name
             ),
             models.Appointment.user_id == user.id,
         )
@@ -76,6 +77,7 @@ def delete_appointment(db: Session, appointment: models.Appointment):
 
 def _create_filter_list(
     date: datetime.date | None,
+    name: str | None,
     is_cancelled: bool | None,
     is_completed: bool | None,
     patient_first_name: str | None,
@@ -85,6 +87,9 @@ def _create_filter_list(
 
     if date:
         all_filters.append(func.DATE(models.Appointment.date) == date)
+
+    if name:
+        all_filters.append(models.Appointment.name == name)
 
     if is_cancelled:
         all_filters.append(models.Appointment.is_cancelled == is_cancelled)

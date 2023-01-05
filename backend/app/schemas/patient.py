@@ -1,6 +1,18 @@
 from __future__ import annotations
 
+import datetime
+
 from pydantic import BaseModel, EmailStr
+
+
+class AppointmentForPatient(BaseModel):
+    id: int
+    date: datetime.datetime
+    is_cancelled: bool
+    is_completed: bool
+
+    class Config:
+        orm_mode = True
 
 
 class PatientBase(BaseModel):
@@ -10,6 +22,14 @@ class PatientBase(BaseModel):
 
 
 class Patient(PatientBase):
+    id: int
+    appointments: list[AppointmentForPatient]
+
+    class Config:
+        orm_mode = True
+
+
+class PatientList(PatientBase):
     id: int
 
     class Config:

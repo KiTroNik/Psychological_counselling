@@ -43,6 +43,7 @@ def expected_first_patient_data() -> dict:
         "first_name": "Albert",
         "last_name": "Einstein",
         "email": "albert@einstein.com",
+        "appointments": [],
         "id": 1,
     }
 
@@ -63,6 +64,7 @@ def expected_updated_patient_data() -> dict:
         "first_name": "Bruce",
         "last_name": "Einstein",
         "email": "albert@einstein.com",
+        "appointments": [],
         "id": 1,
     }
 
