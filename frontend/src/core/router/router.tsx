@@ -6,6 +6,7 @@ import { LoginPage } from "../../pages/login";
 import { RegisterPage } from "../../pages/register";
 import { ErrorPage, PrivateRoute } from "../../shared";
 import { DashboardPage, DashboardIndex } from "../../pages/dashboard";
+import { AddPatientPage } from "../../pages/addPatient";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,17 @@ const router = createBrowserRouter([
             <DashboardPage />
           </PrivateRoute>
         ),
-        children: [{ index: true, element: <DashboardIndex /> }],
+        children: [
+          { index: true, element: <DashboardIndex /> },
+          {
+            path: APP_ROUTES.ADD_PATIENT,
+            element: (
+              <PrivateRoute>
+                <AddPatientPage />
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
     ],
   },
