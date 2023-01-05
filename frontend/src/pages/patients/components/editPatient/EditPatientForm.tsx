@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IAddPatientProps } from "../../addPatient/models";
+import { IAddPatientProps } from "../../models";
 
 const EditPatientForm = () => {
   const {

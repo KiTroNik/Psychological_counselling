@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IAddPatientProps } from "../models";
-import { useAddPatient } from "../api";
+import { IAddPatientProps } from "../../models";
+import { useAddPatient } from "../../api";
 
 const AddPatientForm = () => {
   const mutation = useAddPatient();
