@@ -1,13 +1,14 @@
-import { useApi } from "../../../core";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IAddPatientProps } from "../models";
+import { useAddPatient } from "../api";
 
 const AddPatientForm = () => {
-  const api = useApi();
+  const mutation = useAddPatient();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IAddPatientProps>({
     defaultValues: {
@@ -17,7 +18,14 @@ const AddPatientForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<IAddPatientProps> = async (data) => {};
+  const onSubmit: SubmitHandler<IAddPatientProps> = async (data) => {
+    try {
+      await mutation.mutateAsync(data);
+      reset();
+    } catch (err) {
+      /* empty */
+    }
+  };
 
   return (
     <div className="block rounded-lg bg-white p-6 shadow-lg sm:mx-auto sm:max-w-lg">
@@ -101,7 +109,7 @@ const AddPatientForm = () => {
             {...register("email", {
               required: "Email is required.",
               pattern: {
-                value: /^\S+@\S+$/i,
+                value: /^\S+@\S+\.\S+$/,
                 message: "This should be valid email address.",
               },
             })}
@@ -109,7 +117,7 @@ const AddPatientForm = () => {
             className="form-control font normal m-0 mb-1 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base text-gray-700 transition ease-in-out focus:text-gray-700"
             placeholder="Enter Email Address"
           />
-          <p className="mb-6 text-red-500">{}</p>
+          <p className="mb-6 text-red-500">{errors.email?.message}</p>
         </div>
 
         <button

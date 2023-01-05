@@ -5,6 +5,9 @@ const API_URLS = {
     LOGOUT: "/auth/logout",
     REGISTER: "/auth/register",
   },
+  PATIENTS: {
+    ADD_LIST: "/patients",
+  },
 };
 
 export default API_URLS;

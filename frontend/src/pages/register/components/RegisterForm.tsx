@@ -111,7 +111,7 @@ const RegisterForm = () => {
             {...register("email", {
               required: "Email is required.",
               pattern: {
-                value: /^\S+@\S+$/i,
+                value: /^\S+@\S+\.\S+$/,
                 message: "This should be valid email address.",
               },
             })}

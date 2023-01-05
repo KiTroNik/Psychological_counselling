@@ -16,7 +16,6 @@ export const useRegister = () => {
       },
       onError: () => {
         toast.error("Sorry something went wrong.");
-        console.log("siema");
       },
     }
   );
