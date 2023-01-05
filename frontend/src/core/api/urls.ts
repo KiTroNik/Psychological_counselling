@@ -7,6 +7,7 @@ const API_URLS = {
   },
   PATIENTS: {
     ADD_LIST: "/patients",
+    DETAILS: (id: number) => `/patients/${id}`,
   },
 };
 
