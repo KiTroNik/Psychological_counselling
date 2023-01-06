@@ -6,7 +6,11 @@ import { LoginPage } from "../../pages/login";
 import { RegisterPage } from "../../pages/register";
 import { ErrorPage, PrivateRoute } from "../../shared";
 import { DashboardPage, DashboardIndex } from "../../pages/dashboard";
-import { AddPatientPage, EditPatientPage } from "../../pages/patients";
+import {
+  AddPatientPage,
+  EditPatientPage,
+  ListPatientsPage,
+} from "../../pages/patients";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +52,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoute>
                 <EditPatientPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: APP_ROUTES.LIST_PATIENTS,
+            element: (
+              <PrivateRoute>
+                <ListPatientsPage />
               </PrivateRoute>
             ),
           },
