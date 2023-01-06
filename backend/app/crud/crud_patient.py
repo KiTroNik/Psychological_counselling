@@ -20,12 +20,9 @@ def get_all_user_patients(
     first_name: str | None,
     last_name: str | None,
 ):
-    return (
-        db.query(models.Patient)
-        .filter(
-            *_create_filter_list(email, first_name, last_name),
-            models.Patient.user_id == user.id,
-        )
+    return db.query(models.Patient).filter(
+        *_create_filter_list(email, first_name, last_name),
+        models.Patient.user_id == user.id,
     )
 
 

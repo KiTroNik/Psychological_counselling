@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqladmin import Admin  # type: ignore
 from fastapi_pagination import add_pagination
+from sqladmin import Admin  # type: ignore
 
 from app.admin.appointment import AppointmentAdmin
 from app.admin.patient import PatientAdmin

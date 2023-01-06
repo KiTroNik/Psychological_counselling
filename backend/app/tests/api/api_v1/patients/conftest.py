@@ -26,15 +26,20 @@ def patients(db):
 
 
 @pytest.fixture
-def expected_patient_filter_data() -> list:
-    return [
-        {
-            "first_name": "Albert",
-            "last_name": "Einstein",
-            "email": "albert@einstein.com",
-            "id": 1,
-        }
-    ]
+def expected_patient_filter_data() -> dict:
+    return {
+        "items": [
+            {
+                "id": 1,
+                "first_name": "Albert",
+                "last_name": "Einstein",
+                "email": "albert@einstein.com",
+            }
+        ],
+        "page": 1,
+        "size": 50,
+        "total": 1
+    }
 
 
 @pytest.fixture
@@ -70,24 +75,29 @@ def expected_updated_patient_data() -> dict:
 
 
 @pytest.fixture
-def expected_patient_data() -> list:
-    return [
-        {
-            "first_name": "Albert",
-            "last_name": "Einstein",
-            "email": "albert@einstein.com",
-            "id": 1,
-        },
-        {
-            "first_name": "Nicola",
-            "last_name": "Tesla",
-            "email": "nicola@tesla.com",
-            "id": 2,
-        },
-        {
-            "first_name": "Sigmund",
-            "last_name": "Freud",
-            "email": "sigmund@freud.com",
-            "id": 3,
-        },
-    ]
+def expected_patient_data() -> dict:
+    return {
+        "items": [
+            {
+                "first_name": "Albert",
+                "last_name": "Einstein",
+                "email": "albert@einstein.com",
+                "id": 1,
+            },
+            {
+                "first_name": "Nicola",
+                "last_name": "Tesla",
+                "email": "nicola@tesla.com",
+                "id": 2,
+            },
+            {
+                "first_name": "Sigmund",
+                "last_name": "Freud",
+                "email": "sigmund@freud.com",
+                "id": 3,
+            },
+        ],
+        "page": 1,
+        "size": 50,
+        "total": 3
+    }

@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from fastapi_pagination import Page
+from fastapi_pagination.ext.sqlalchemy import paginate
+from sqlalchemy.orm import Session
 
 from app.api import deps
 from app.crud import crud_patient
 from app.models.user import User
 from app.schemas import patient as schemas
-from fastapi_pagination.ext.sqlalchemy import paginate
 
 router = APIRouter()
 

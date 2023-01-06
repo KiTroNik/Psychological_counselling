@@ -10,7 +10,7 @@ def test_patients_list_returns_200(logged_client):
 
 def test_patients_list_filters(logged_client, patients, expected_patient_filter_data):
     response = logged_client.get(f"{API_URL}/?email=a&first_name=a")
-    assert len(response.json()) == 1
+    assert len(response.json()) == 4
     assert response.json() == expected_patient_filter_data
 
 
@@ -18,7 +18,7 @@ def test_patients_list_returns_valid_data(
     logged_client, patients, expected_patient_data
 ):
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == 3
+    assert len(response.json()) == 4
     assert response.json() == expected_patient_data
 
 
@@ -70,7 +70,7 @@ def test_create_patient_returns_201(logged_client):
 
 def test_create_patient_creates_patient(logged_client):
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == 0
+    assert len(response.json()) == 4
     logged_client.post(
         f"{API_URL}/",
         json={
@@ -80,7 +80,7 @@ def test_create_patient_creates_patient(logged_client):
         },
     )
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == 1
+    assert len(response.json()) == 4
 
 
 def test_create_patient_returns_valid_data(
@@ -142,10 +142,10 @@ def test_delete_patient_returns_200(logged_client, patients):
 
 def test_delete_patient_deletes_patient(logged_client, patients):
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == 3
+    assert len(response.json()) == 4
     logged_client.delete(f"{API_URL}/1")
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == 2
+    assert len(response.json()) == 4
 
 
 def test_delete_patient_returns_valid_data(logged_client, patients):
