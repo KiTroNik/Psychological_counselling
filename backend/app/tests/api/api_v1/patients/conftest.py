@@ -38,7 +38,7 @@ def expected_patient_filter_data() -> dict:
         ],
         "page": 1,
         "size": 50,
-        "total": 1
+        "total": 1,
     }
 
 
@@ -99,5 +99,5 @@ def expected_patient_data() -> dict:
         ],
         "page": 1,
         "size": 50,
-        "total": 3
+        "total": 3,
     }
