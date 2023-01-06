@@ -2,7 +2,15 @@ import { API_URLS, useApi } from "../../../core";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { IAddEditPatientModel, IPatientModel } from "../models";
+import {
+  IAddEditPatientModel,
+  IPatientFilterModel,
+  IPatientModel,
+} from "../models";
+import {
+  IAxiosResponseModel,
+  IPaginatedResponse,
+} from "../../../shared/models";
 
 export const useAddPatient = () => {
   const api = useApi();
@@ -27,7 +35,7 @@ export const useAddPatient = () => {
 
 export const useGetPatient = (id: number) => {
   const api = useApi();
-  return useQuery<IPatientModel, AxiosError>({
+  return useQuery<IAxiosResponseModel<IPatientModel>, AxiosError>({
     queryKey: ["patient", id],
     queryFn: async () => {
       return await api.get(API_URLS.PATIENTS.DETAILS(id));
@@ -54,4 +62,24 @@ export const useEditPatient = (id: number) => {
       },
     }
   );
+};
+
+export const useGetPatientList = (
+  page: number,
+  size: number,
+  filters: IPatientFilterModel
+) => {
+  const api = useApi();
+  return useQuery<
+    IAxiosResponseModel<IPaginatedResponse<IPatientModel[]>>,
+    AxiosError
+  >({
+    queryKey: ["patientList", page, size, API_URLS.PATIENTS.ADD_LIST, filters],
+    queryFn: async () => {
+      return await api.get(API_URLS.PATIENTS.ADD_LIST, {
+        params: { page, size, ...filters },
+      });
+    },
+    keepPreviousData: true,
+  });
 };

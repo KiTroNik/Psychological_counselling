@@ -8,14 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { router } from "./core";
 import { RouterProvider } from "react-router-dom";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-    },
-  },
-});
+const queryClient = new QueryClient({});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

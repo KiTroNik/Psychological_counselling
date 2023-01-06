@@ -88,9 +88,15 @@ const Sidebar = () => {
                 <span className="ml-3 text-sm font-medium"> Add </span>
               </NavLink>
 
-              <a
-                href="/"
-                className="flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+              <NavLink
+                to={APP_ROUTES.LIST_PATIENTS}
+                className={({ isActive, isPending }) =>
+                  isActive
+                    ? "flex items-center rounded-lg bg-gray-200 px-4 py-2 text-gray-700 text-blue-700"
+                    : isPending
+                    ? "flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                    : "flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +114,7 @@ const Sidebar = () => {
                 </svg>
 
                 <span className="ml-3 text-sm font-medium"> List </span>
-              </a>
+              </NavLink>
             </nav>
           </details>
 
