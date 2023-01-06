@@ -13,7 +13,9 @@ class Patient(Base):
     last_name = Column(String(255), nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
 
-    appointments = relationship("Appointment", back_populates="patient")
+    appointments = relationship(
+        "Appointment", back_populates="patient", cascade="save-update, merge, delete"
+    )
 
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", back_populates="patients")  # type: ignore

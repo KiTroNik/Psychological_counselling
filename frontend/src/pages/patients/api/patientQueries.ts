@@ -1,5 +1,5 @@
 import { API_URLS, useApi } from "../../../core";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import {
@@ -11,6 +11,7 @@ import {
   IAxiosResponseModel,
   IPaginatedResponse,
 } from "../../../shared/models";
+import { data } from "autoprefixer";
 
 export const useAddPatient = () => {
   const api = useApi();
@@ -82,4 +83,25 @@ export const useGetPatientList = (
     },
     keepPreviousData: true,
   });
+};
+
+export const useDeletePatient = (id: number) => {
+  const api = useApi();
+  const queryClient = useQueryClient();
+  return useMutation<{ id: number }, AxiosError, { id: number }>(
+    async () => {
+      return await api.delete(API_URLS.PATIENTS.DETAILS(id));
+    },
+    {
+      onSuccess: () => {
+        toast.success("Successfully deleted");
+      },
+      onError: () => {
+        toast.error("Sorry something went wrong.");
+      },
+      onSettled: () => {
+        void queryClient.invalidateQueries(["patientList"]);
+      },
+    }
+  );
 };
