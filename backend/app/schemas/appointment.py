@@ -8,13 +8,13 @@ from app.schemas.patient import PatientList
 
 
 class AppointmentCreate(BaseModel):
-    date: datetime.datetime
+    date: datetime.date
     name: str
     patient_id: int
 
 
 class AppointmentBase(BaseModel):
-    date: datetime.datetime
+    date: datetime.date
     name: str
     is_cancelled: bool
     is_completed: bool
@@ -30,7 +30,7 @@ class Appointment(AppointmentBase):
 
 
 class AppointmentUpdate(BaseModel):
-    date: datetime.datetime | None
+    date: datetime.date | None
     name: str | None
     is_cancelled: bool | None
     is_completed: bool | None

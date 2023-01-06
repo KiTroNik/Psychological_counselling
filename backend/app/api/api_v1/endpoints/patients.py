@@ -14,6 +14,25 @@ router = APIRouter()
 
 
 @router.get(
+    "/without_pagination",
+    response_model=list[schemas.PatientList],
+)
+def patients_list_without_pagination(
+    db: Session = Depends(deps.get_db),
+    current_user: User = Depends(deps.get_current_user),
+    email: str | None = None,
+    first_name: str | None = None,
+    last_name: str | None = None,
+):
+    """
+    Get list of all user patients without pagination.
+    """
+
+    return crud_patient.get_all_user_patients(
+        db, email=email, first_name=first_name, last_name=last_name, user=current_user
+    ).all()
+
+@router.get(
     "/",
     response_model=Page[schemas.PatientList],
 )
@@ -28,11 +47,9 @@ def patients_list(
     Get list of all user patients.
     """
 
-    result = crud_patient.get_all_user_patients(
+    return paginate(crud_patient.get_all_user_patients(
         db, email=email, first_name=first_name, last_name=last_name, user=current_user
-    )
-    return paginate(result)
-
+    ))
 
 @router.get(
     "/{patient_id}",

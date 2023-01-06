@@ -11,7 +11,6 @@ import {
   IAxiosResponseModel,
   IPaginatedResponse,
 } from "../../../shared/models";
-import { data } from "autoprefixer";
 
 export const useAddPatient = () => {
   const api = useApi();

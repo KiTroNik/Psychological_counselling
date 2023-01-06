@@ -8,6 +8,10 @@ const API_URLS = {
   PATIENTS: {
     ADD_LIST: "/patients",
     DETAILS: (id: number) => `/patients/${id}`,
+    LIST_WITHOUT_PAGINATION: "/patients/without_pagination",
+  },
+  APPOINTMENTS: {
+    ADD_LIST: "/appointments",
   },
 };
 

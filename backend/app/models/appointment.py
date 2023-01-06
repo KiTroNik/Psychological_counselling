@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date
 from sqlalchemy.orm import relationship
 
 from app.db.database import Base
@@ -9,7 +9,7 @@ class Appointment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    date = Column(DateTime, nullable=False)
+    date = Column(Date, nullable=False)
     is_cancelled = Column(Boolean, default=False)
     is_completed = Column(Boolean, default=False)
     notes = Column(String, nullable=True)
