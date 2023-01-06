@@ -26,7 +26,6 @@ def get_all_user_patients(
             *_create_filter_list(email, first_name, last_name),
             models.Patient.user_id == user.id,
         )
-        .all()
     )
 
 

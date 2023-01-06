@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqladmin import Admin  # type: ignore
+from fastapi_pagination import add_pagination
 
 from app.admin.appointment import AppointmentAdmin
 from app.admin.patient import PatientAdmin
@@ -21,6 +22,7 @@ app.add_middleware(
 )
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
+add_pagination(app)
 
 admin = Admin(app, engine)
 admin.add_view(UserAdmin)

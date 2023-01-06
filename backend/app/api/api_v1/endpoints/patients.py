@@ -2,18 +2,20 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from fastapi_pagination import Page
 
 from app.api import deps
 from app.crud import crud_patient
 from app.models.user import User
 from app.schemas import patient as schemas
+from fastapi_pagination.ext.sqlalchemy import paginate
 
 router = APIRouter()
 
 
 @router.get(
     "/",
-    response_model=list[schemas.PatientList],
+    response_model=Page[schemas.PatientList],
 )
 def patients_list(
     db: Session = Depends(deps.get_db),
@@ -26,9 +28,10 @@ def patients_list(
     Get list of all user patients.
     """
 
-    return crud_patient.get_all_user_patients(
+    result = crud_patient.get_all_user_patients(
         db, email=email, first_name=first_name, last_name=last_name, user=current_user
     )
+    return paginate(result)
 
 
 @router.get(
