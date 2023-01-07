@@ -60,8 +60,7 @@ def test_create_appointment_returns_201(logged_client, appointments):
 
 
 def test_create_appointment_creates_appointment(logged_client, appointments):
-    response = logged_client.get(f"{API_URL}/")
-    num_of_appointments = len(response.json())
+    logged_client.get(f"{API_URL}/")
     logged_client.post(
         f"{API_URL}/",
         json={"date": "2137-05-15", "patient_id": 1, "name": "first"},
@@ -130,8 +129,7 @@ def test_delete_appointment_returns_200(logged_client, appointments):
 
 
 def test_delete_appointment_deletes_appointment(logged_client, appointments):
-    response = logged_client.get(f"{API_URL}/")
-    num_of_appointments = len(response.json())
+    logged_client.get(f"{API_URL}/")
     logged_client.delete(f"{API_URL}/1")
     response = logged_client.get(f"{API_URL}/")
     assert len(response.json()) == 4
