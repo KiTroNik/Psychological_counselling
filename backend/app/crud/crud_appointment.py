@@ -35,10 +35,11 @@ def get_all_user_appointments(
                 patient_last_name,
             ),
             models.Appointment.user_id == user.id,
-        ).order_by(
+        )
+        .order_by(
             models.Appointment.is_cancelled.asc(),
             models.Appointment.is_completed.asc(),
-            models.Appointment.date
+            models.Appointment.date,
         )
     )
 
@@ -97,9 +98,7 @@ def _create_filter_list(  # pylint: disable=R0913
         all_filters.append(func.DATE(models.Appointment.date) == date)
 
     if name:
-        all_filters.append(
-            func.lower(models.Appointment.name).startswith(name.lower())
-        )
+        all_filters.append(func.lower(models.Appointment.name).startswith(name.lower()))
 
     if is_cancelled:
         all_filters.append(models.Appointment.is_cancelled == is_cancelled)

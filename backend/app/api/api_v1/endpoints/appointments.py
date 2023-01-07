@@ -31,16 +31,18 @@ def my_appointments_list(  # pylint: disable=R0913
     Get list of users appointments.
     """
 
-    return paginate(crud_appointment.get_all_user_appointments(
-        db=db,
-        user=current_user,
-        date=date,
-        name=name,
-        is_cancelled=is_cancelled,
-        is_completed=is_completed,
-        patient_first_name=patient_first_name,
-        patient_last_name=patient_last_name,
-    ))
+    return paginate(
+        crud_appointment.get_all_user_appointments(
+            db=db,
+            user=current_user,
+            date=date,
+            name=name,
+            is_cancelled=is_cancelled,
+            is_completed=is_completed,
+            patient_first_name=patient_first_name,
+            patient_last_name=patient_last_name,
+        )
+    )
 
 
 @router.get("/{appointment_id}", response_model=schemas.Appointment)

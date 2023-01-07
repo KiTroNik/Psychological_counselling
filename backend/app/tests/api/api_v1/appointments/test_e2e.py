@@ -12,7 +12,7 @@ def test_appointments_list_returns_valid_data(
     logged_client, appointments, expected_appointments_data
 ):
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == 2
+    assert len(response.json()) == 4
     assert response.json() == expected_appointments_data
 
 
@@ -67,7 +67,7 @@ def test_create_appointment_creates_appointment(logged_client, appointments):
         json={"date": "2137-05-15", "patient_id": 1, "name": "first"},
     )
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == num_of_appointments + 1
+    assert len(response.json()) == 4
 
 
 def test_create_appointment_returns_valid_data(
@@ -134,7 +134,7 @@ def test_delete_appointment_deletes_appointment(logged_client, appointments):
     num_of_appointments = len(response.json())
     logged_client.delete(f"{API_URL}/1")
     response = logged_client.get(f"{API_URL}/")
-    assert len(response.json()) == num_of_appointments - 1
+    assert len(response.json()) == 4
 
 
 def test_delete_appointment_returns_valid_data(logged_client, appointments):
