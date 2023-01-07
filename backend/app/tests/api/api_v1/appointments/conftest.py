@@ -27,23 +27,17 @@ def appointments(db):
 
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(
-            date=datetime.date(2022, 5, 15), patient_id=1, name="first"
-        ),
+        AppointmentCreate(date=datetime.date(2022, 5, 15), patient_id=1, name="first"),
         user_id=1,
     )
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(
-            date=datetime.date(2022, 5, 12), patient_id=1, name="second"
-        ),
+        AppointmentCreate(date=datetime.date(2022, 5, 12), patient_id=1, name="second"),
         user_id=1,
     )
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(
-            date=datetime.date(2022, 5, 16), patient_id=1, name="third"
-        ),
+        AppointmentCreate(date=datetime.date(2022, 5, 16), patient_id=1, name="third"),
         user_id=2,
     )
 
