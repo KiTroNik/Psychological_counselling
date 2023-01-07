@@ -46,7 +46,7 @@ def test_get_appointment_is_protected(client):
 def test_create_appointment_is_protected(client):
     response = client.post(
         f"{API_URL}/",
-        json={"date": "2137-05-15T00:00:00", "patient_id": 1, "name": "fourth"},
+        json={"date": "2137-05-15", "patient_id": 1, "name": "fourth"},
     )
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
@@ -54,7 +54,7 @@ def test_create_appointment_is_protected(client):
 def test_create_appointment_returns_201(logged_client, appointments):
     response = logged_client.post(
         f"{API_URL}/",
-        json={"date": "2137-05-15T00:00:00", "patient_id": 1, "name": "first"},
+        json={"date": "2137-05-15", "patient_id": 1, "name": "first"},
     )
     assert response.status_code == status.HTTP_201_CREATED
 
@@ -64,7 +64,7 @@ def test_create_appointment_creates_appointment(logged_client, appointments):
     num_of_appointments = len(response.json())
     logged_client.post(
         f"{API_URL}/",
-        json={"date": "2137-05-15T00:00:00", "patient_id": 1, "name": "first"},
+        json={"date": "2137-05-15", "patient_id": 1, "name": "first"},
     )
     response = logged_client.get(f"{API_URL}/")
     assert len(response.json()) == num_of_appointments + 1
@@ -75,7 +75,7 @@ def test_create_appointment_returns_valid_data(
 ):
     response = logged_client.post(
         f"{API_URL}/",
-        json={"date": "2137-05-15T00:00:00", "patient_id": 1, "name": "fourth"},
+        json={"date": "2137-05-15", "patient_id": 1, "name": "fourth"},
     )
     assert response.json() == expected_created_appointment_data
 
