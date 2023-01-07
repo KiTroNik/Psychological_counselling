@@ -55,6 +55,7 @@ export const useGetAppointment = (id: number) => {
 
 export const useEditAppointment = (id: number) => {
   const api = useApi();
+  const queryClient = useQueryClient();
   return useMutation<IAppointmentModel, AxiosError, IAppointmentModel>(
     async (data) => {
       return await api.patch(API_URLS.APPOINTMENTS.DETAILS(id), data);
@@ -65,6 +66,9 @@ export const useEditAppointment = (id: number) => {
       },
       onError: () => {
         toast.error("Sorry something went wrong.");
+      },
+      onSettled: () => {
+        void queryClient.invalidateQueries(["appointment"]);
       },
     }
   );

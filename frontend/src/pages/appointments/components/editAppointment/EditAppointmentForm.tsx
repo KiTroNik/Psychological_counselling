@@ -15,7 +15,6 @@ const EditAppointmentForm = () => {
   const appointment = useGetAppointment(parseInt(params.id));
   const mutation = useEditAppointment(parseInt(params.id));
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -23,20 +22,25 @@ const EditAppointmentForm = () => {
     watch,
   } = useForm<IAppointmentModel>();
 
-  const onSubmit: SubmitHandler<IAppointmentModel> = async (data) => {
-    try {
-      await mutation.mutateAsync(data);
-      navigate(APP_ROUTES.DASHBOARD);
-    } catch (err) {
-      /* empty */
-    }
-  };
-
   if (patients.isLoading || appointment.isLoading) {
     return <PageLoader />;
   }
 
   if (patients.isSuccess && appointment.isSuccess) {
+    const onSubmit: SubmitHandler<IAppointmentModel> = async (data) => {
+      try {
+        await mutation.mutateAsync(data);
+        navigate(
+          APP_ROUTES.DETAILS_APPOINTMENT.replace(
+            ":id",
+            String(appointment.data.data.id)
+          )
+        );
+      } catch (err) {
+        /* empty */
+      }
+    };
+
     return (
       <div className="block rounded-lg bg-white p-6 shadow-lg sm:mx-auto sm:max-w-lg">
         <svg

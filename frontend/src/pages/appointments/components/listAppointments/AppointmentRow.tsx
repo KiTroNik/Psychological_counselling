@@ -32,9 +32,12 @@ const AppointmentRow = ({
       <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
         <div className="flex items-center">
           <div className="ml-4">
-            <div className="text-sm font-medium leading-5 text-gray-900">
+            <Link
+              to={APP_ROUTES.DETAILS_APPOINTMENT.replace(":id", String(id))}
+              className="text-sm font-medium leading-5 text-gray-900 underline hover:no-underline"
+            >
               {name}
-            </div>
+            </Link>
           </div>
         </div>
       </td>

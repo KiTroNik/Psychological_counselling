@@ -13,6 +13,7 @@ import {
 } from "../../pages/patients";
 import {
   AddAppointmentPage,
+  AppointmentDetailsPage,
   EditAppointmentPage,
   ListAppointmentsPage,
 } from "../../pages/appointments";
@@ -89,6 +90,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoute>
                 <ListAppointmentsPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: APP_ROUTES.DETAILS_APPOINTMENT,
+            element: (
+              <PrivateRoute>
+                <AppointmentDetailsPage />
               </PrivateRoute>
             ),
           },
