@@ -35,6 +35,10 @@ def get_all_user_appointments(
                 patient_last_name,
             ),
             models.Appointment.user_id == user.id,
+        ).order_by(
+            models.Appointment.is_cancelled.asc(),
+            models.Appointment.is_completed.asc(),
+            models.Appointment.date
         )
     )
 
