@@ -7,6 +7,7 @@ from pydantic import BaseModel, EmailStr
 
 class AppointmentForPatient(BaseModel):
     id: int
+    name: str
     date: datetime.date
     is_cancelled: bool
     is_completed: bool
