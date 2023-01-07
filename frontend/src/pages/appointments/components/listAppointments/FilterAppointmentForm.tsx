@@ -32,7 +32,7 @@ const FilterAppointmentForm = ({ setFilters }: FilterAppointmentProps) => {
   return (
     <div className="mx-auto">
       <form
-        className="align-items-center align-content-center justify-content-center mb-4 flex gap-4"
+        className="mb-4 flex content-center items-center justify-center gap-4 text-center"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
