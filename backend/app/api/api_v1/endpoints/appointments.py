@@ -3,6 +3,8 @@ from __future__ import annotations
 import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi_pagination import Page
+from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from app.api import deps
@@ -14,7 +16,7 @@ from app.schemas import appointment as schemas
 router = APIRouter()
 
 
-@router.get("/", response_model=list[schemas.Appointment])
+@router.get("/", response_model=Page[schemas.Appointment])
 def my_appointments_list(  # pylint: disable=R0913
     date: datetime.date | None = None,
     name: str | None = None,
@@ -29,15 +31,17 @@ def my_appointments_list(  # pylint: disable=R0913
     Get list of users appointments.
     """
 
-    return crud_appointment.get_all_user_appointments(
-        db=db,
-        user=current_user,
-        date=date,
-        name=name,
-        is_cancelled=is_cancelled,
-        is_completed=is_completed,
-        patient_first_name=patient_first_name,
-        patient_last_name=patient_last_name,
+    return paginate(
+        crud_appointment.get_all_user_appointments(
+            db=db,
+            user=current_user,
+            date=date,
+            name=name,
+            is_cancelled=is_cancelled,
+            is_completed=is_completed,
+            patient_first_name=patient_first_name,
+            patient_last_name=patient_last_name,
+        )
     )
 
 

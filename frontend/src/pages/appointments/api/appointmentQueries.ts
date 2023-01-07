@@ -1,11 +1,17 @@
 import { API_URLS, useApi } from "../../../core";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { IAxiosResponseModel } from "../../../shared/models";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  IAxiosResponseModel,
+  IPaginatedResponse,
+} from "../../../shared/models";
 import { IPatientModel } from "../../patients/models";
 import { AxiosError } from "axios";
-import { IAddAppointmentModel, IAppointmentModel } from "../models";
+import {
+  IAddAppointmentModel,
+  IAppointmentFilterModel,
+  IAppointmentModel,
+} from "../models";
 import { toast } from "react-toastify";
-import { data } from "autoprefixer";
 
 export const useGetPatientsWithoutPagination = () => {
   const api = useApi();
@@ -59,6 +65,56 @@ export const useEditAppointment = (id: number) => {
       },
       onError: () => {
         toast.error("Sorry something went wrong.");
+      },
+    }
+  );
+};
+
+export const useGetAppointmentList = (
+  page: number,
+  size: number,
+  filters: IAppointmentFilterModel
+) => {
+  const { date, ...finalFilters } = filters;
+  const api = useApi();
+  return useQuery<
+    IAxiosResponseModel<IPaginatedResponse<IAppointmentModel[]>>,
+    AxiosError
+  >({
+    queryKey: [
+      "appointmentList",
+      page,
+      size,
+      filters,
+      date,
+      API_URLS.APPOINTMENTS.ADD_LIST,
+      finalFilters,
+    ],
+    queryFn: async () => {
+      return await api.get(API_URLS.APPOINTMENTS.ADD_LIST, {
+        params: { page, size, ...finalFilters, ...(date && { date }) },
+      });
+    },
+    keepPreviousData: true,
+  });
+};
+
+export const useDeleteAppointment = (id: number) => {
+  const api = useApi();
+  const queryClient = useQueryClient();
+  return useMutation<{ id: number }, AxiosError, { id: number }>(
+    async () => {
+      return await api.delete(API_URLS.APPOINTMENTS.DETAILS(id));
+    },
+    {
+      onSuccess: () => {
+        toast.success("Successfully deleted.");
+      },
+      onError: () => {
+        toast.error("Sorry something went wrong.");
+      },
+      onSettled: () => {
+        void queryClient.invalidateQueries(["appointmentList"]);
       },
     }
   );

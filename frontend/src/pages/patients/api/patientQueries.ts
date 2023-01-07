@@ -100,6 +100,7 @@ export const useDeletePatient = (id: number) => {
       },
       onSettled: () => {
         void queryClient.invalidateQueries(["patientList"]);
+        void queryClient.invalidateQueries(["appointmentList"]);
       },
     }
   );

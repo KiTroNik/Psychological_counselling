@@ -38,7 +38,7 @@ profile = "black"
 max-line-length = "88"
 
 [tool.pylint.MASTER]
-disable = ["C0114", "C0116", "C0115", "R0903", "C0103" , "W0613", "W0621"]
+disable = ["C0114", "C0116", "C0115", "R0903", "C0103" , "W0613", "W0621", "R0801"]
 ignore = "migrations"
 extension-pkg-whitelist = "pydantic"
 

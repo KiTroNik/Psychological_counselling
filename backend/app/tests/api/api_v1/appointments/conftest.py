@@ -43,37 +43,42 @@ def appointments(db):
 
 
 @pytest.fixture
-def expected_appointments_data() -> list:
-    return [
-        {
-            "date": "2022-05-15",
-            "name": "first",
-            "is_cancelled": False,
-            "is_completed": False,
-            "notes": None,
-            "id": 1,
-            "patient": {
-                "first_name": "Albert",
-                "last_name": "Fish",
-                "email": "albert@fish.com",
-                "id": 1,
+def expected_appointments_data() -> dict:
+    return {
+        "items": [
+            {
+                "date": "2022-05-12",
+                "name": "second",
+                "is_cancelled": False,
+                "is_completed": False,
+                "notes": None,
+                "id": 2,
+                "patient": {
+                    "first_name": "Albert",
+                    "last_name": "Fish",
+                    "email": "albert@fish.com",
+                    "id": 1,
+                },
             },
-        },
-        {
-            "date": "2022-05-12",
-            "name": "second",
-            "is_cancelled": False,
-            "is_completed": False,
-            "notes": None,
-            "id": 2,
-            "patient": {
-                "first_name": "Albert",
-                "last_name": "Fish",
-                "email": "albert@fish.com",
+            {
+                "date": "2022-05-15",
+                "name": "first",
+                "is_cancelled": False,
+                "is_completed": False,
+                "notes": None,
                 "id": 1,
+                "patient": {
+                    "first_name": "Albert",
+                    "last_name": "Fish",
+                    "email": "albert@fish.com",
+                    "id": 1,
+                },
             },
-        },
-    ]
+        ],
+        "page": 1,
+        "size": 50,
+        "total": 2,
+    }
 
 
 @pytest.fixture
