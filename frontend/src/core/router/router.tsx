@@ -14,6 +14,7 @@ import {
 import {
   AddAppointmentPage,
   EditAppointmentPage,
+  ListAppointmentsPage,
 } from "../../pages/appointments";
 
 const router = createBrowserRouter([
@@ -80,6 +81,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoute>
                 <EditAppointmentPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: APP_ROUTES.LIST_APPOINTMENT,
+            element: (
+              <PrivateRoute>
+                <ListAppointmentsPage />
               </PrivateRoute>
             ),
           },

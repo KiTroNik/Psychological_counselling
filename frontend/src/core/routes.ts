@@ -8,6 +8,7 @@ const APP_ROUTES = {
   LIST_PATIENTS: "/dashboard/patients/",
   ADD_APPOINTMENT: "/dashboard/appointments/add",
   EDIT_APPOINTMENT: "/dashboard/appointments/:id/edit",
+  LIST_APPOINTMENT: "/dashboard/appointments/",
 };
 
 export default APP_ROUTES;
