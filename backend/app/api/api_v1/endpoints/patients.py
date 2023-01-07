@@ -32,6 +32,7 @@ def patients_list_without_pagination(
         db, email=email, first_name=first_name, last_name=last_name, user=current_user
     ).all()
 
+
 @router.get(
     "/",
     response_model=Page[schemas.PatientList],
@@ -47,9 +48,16 @@ def patients_list(
     Get list of all user patients.
     """
 
-    return paginate(crud_patient.get_all_user_patients(
-        db, email=email, first_name=first_name, last_name=last_name, user=current_user
-    ))
+    return paginate(
+        crud_patient.get_all_user_patients(
+            db,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            user=current_user,
+        )
+    )
+
 
 @router.get(
     "/{patient_id}",
