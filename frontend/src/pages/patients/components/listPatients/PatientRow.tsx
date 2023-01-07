@@ -17,9 +17,12 @@ const PatientRow = ({ id, email, first_name, last_name }: PatientRowProps) => {
       <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
         <div className="flex items-center">
           <div className="ml-4">
-            <div className="text-sm font-medium leading-5 text-gray-900">
+            <Link
+              to={APP_ROUTES.DETAILS_PATIENT.replace(":id", String(id))}
+              className="text-sm font-medium leading-5 text-gray-900 underline hover:no-underline"
+            >
               {first_name} {last_name}
-            </div>
+            </Link>
           </div>
         </div>
       </td>

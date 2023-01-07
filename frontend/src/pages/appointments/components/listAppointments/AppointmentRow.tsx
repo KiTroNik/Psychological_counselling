@@ -14,7 +14,7 @@ interface AppointmentRowProps {
     first_name: string;
     last_name: string;
     email: string;
-  };
+  } | null;
 }
 
 const AppointmentRow = ({
@@ -41,18 +41,22 @@ const AppointmentRow = ({
           </div>
         </div>
       </td>
-
       <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
         <div className="text-sm leading-5 text-gray-500">{date}</div>
       </td>
 
-      <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center">
-          <div className="text-sm font-medium leading-5 text-gray-900">
-            {patient.first_name} {patient.last_name}
+      {patient !== null && (
+        <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center">
+            <Link
+              to={APP_ROUTES.DETAILS_PATIENT.replace(":id", String(patient.id))}
+              className="text-sm font-medium leading-5 text-gray-900 underline hover:no-underline"
+            >
+              {patient.first_name} {patient.last_name}
+            </Link>
           </div>
-        </div>
-      </td>
+        </td>
+      )}
 
       {is_cancelled && (
         <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
@@ -61,7 +65,6 @@ const AppointmentRow = ({
           </span>
         </td>
       )}
-
       {is_completed && (
         <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
           <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
@@ -69,7 +72,6 @@ const AppointmentRow = ({
           </span>
         </td>
       )}
-
       {!is_completed && !is_cancelled && (
         <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
           <span className="inline-flex rounded-full bg-blue-200 px-2 text-xs font-semibold leading-5 text-blue-800">
@@ -77,7 +79,6 @@ const AppointmentRow = ({
           </span>
         </td>
       )}
-
       <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4 text-sm leading-5 text-gray-500">
         <Link to={APP_ROUTES.EDIT_APPOINTMENT.replace(":id", String(id))}>
           <svg

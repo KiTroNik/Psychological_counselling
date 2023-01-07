@@ -10,6 +10,7 @@ import {
   AddPatientPage,
   EditPatientPage,
   ListPatientsPage,
+  PatientDetailsPage,
 } from "../../pages/patients";
 import {
   AddAppointmentPage,
@@ -98,6 +99,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoute>
                 <AppointmentDetailsPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: APP_ROUTES.DETAILS_PATIENT,
+            element: (
+              <PrivateRoute>
+                <PatientDetailsPage />
               </PrivateRoute>
             ),
           },
