@@ -21,6 +21,11 @@ const PatientsTable = () => {
   if (response.isSuccess) {
     return (
       <div className="mt-8 flex flex-col">
+        <div className="text-center">
+          <h2 className="mb-6 text-5xl font-bold text-indigo-500">
+            Your Patients
+          </h2>
+        </div>
         <SearchPatientForm setFilters={setFilters} />
         <div className="-my-2 overflow-x-auto py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
           <div className="inline-block min-w-full overflow-hidden border-b border-gray-200 align-middle shadow sm:rounded-lg">

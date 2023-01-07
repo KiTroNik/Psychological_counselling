@@ -27,23 +27,17 @@ def appointments(db):
 
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(
-            date=datetime.datetime(2022, 5, 15), patient_id=1, name="first"
-        ),
+        AppointmentCreate(date=datetime.date(2022, 5, 15), patient_id=1, name="first"),
         user_id=1,
     )
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(
-            date=datetime.datetime(2022, 5, 12), patient_id=1, name="second"
-        ),
+        AppointmentCreate(date=datetime.date(2022, 5, 12), patient_id=1, name="second"),
         user_id=1,
     )
     crud_appointment.create_appointment(
         db,
-        AppointmentCreate(
-            date=datetime.datetime(2022, 5, 16), patient_id=1, name="third"
-        ),
+        AppointmentCreate(date=datetime.date(2022, 5, 16), patient_id=1, name="third"),
         user_id=2,
     )
 
@@ -52,7 +46,7 @@ def appointments(db):
 def expected_appointments_data() -> list:
     return [
         {
-            "date": "2022-05-15T00:00:00",
+            "date": "2022-05-15",
             "name": "first",
             "is_cancelled": False,
             "is_completed": False,
@@ -66,7 +60,7 @@ def expected_appointments_data() -> list:
             },
         },
         {
-            "date": "2022-05-12T00:00:00",
+            "date": "2022-05-12",
             "name": "second",
             "is_cancelled": False,
             "is_completed": False,
@@ -85,7 +79,7 @@ def expected_appointments_data() -> list:
 @pytest.fixture
 def expected_first_appointment_data() -> dict:
     return {
-        "date": "2022-05-15T00:00:00",
+        "date": "2022-05-15",
         "name": "first",
         "is_cancelled": False,
         "is_completed": False,
@@ -103,7 +97,7 @@ def expected_first_appointment_data() -> dict:
 @pytest.fixture
 def expected_created_appointment_data() -> dict:
     return {
-        "date": "2137-05-15T00:00:00",
+        "date": "2137-05-15",
         "name": "fourth",
         "is_cancelled": False,
         "is_completed": False,
@@ -121,7 +115,7 @@ def expected_created_appointment_data() -> dict:
 @pytest.fixture
 def expected_updated_appointment_data() -> dict:
     return {
-        "date": "2022-05-15T00:00:00",
+        "date": "2022-05-15",
         "name": "first",
         "is_cancelled": False,
         "is_completed": False,
