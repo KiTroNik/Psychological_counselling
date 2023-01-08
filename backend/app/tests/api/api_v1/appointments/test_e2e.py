@@ -50,6 +50,7 @@ def test_create_appointment_is_protected(client):
     )
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
+
 # Not possible to run on the github actions
 # def test_create_appointment_returns_201(logged_client, appointments):
 #     response = logged_client.post(
