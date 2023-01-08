@@ -32,6 +32,7 @@ class Patient(PatientBase):
 
 class PatientList(PatientBase):
     id: int
+    email: EmailStr
 
     class Config:
         orm_mode = True
