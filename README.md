@@ -1,5 +1,7 @@
 # Psychological Councelling app
-This repository contains both backend (FastApi) and frontend (React) projects for my engineering work.
+This repository contains both backend (FastApi) and frontend (React) projects.
+
+![screen](https://user-images.githubusercontent.com/17914041/227014920-9b314459-4ef8-47c2-9e02-0d6a6ad519e3.png)
 
 ## Environment management
 ### Start backend as daemon
